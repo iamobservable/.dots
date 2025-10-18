@@ -1,0 +1,9 @@
+#!/bin/bash
+
+stow git
+stow go --adopt
+# stow hypr --adopt
+stow omarchy
+stow opencode
+stow starship
+stow user-dirs
