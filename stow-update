@@ -3,6 +3,7 @@
 stow git
 stow go --adopt
 # stow hypr --adopt
+stow mise
 stow omarchy
 stow opencode
 stow starship
