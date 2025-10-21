@@ -1,0 +1,35 @@
+#!/bin/bash
+
+CONFIG_FILE="$HOME/.config/waybar/config.jsonc"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo "Config file not found"
+  exit 1
+fi
+
+current_format=$(jq -r '.pulseaudio.format' "$CONFIG_FILE")
+
+if [ "$current_format" = "{icon}  {volume}%" ]; then
+  jq '.pulseaudio.format = "{icon}"' "$CONFIG_FILE" >"${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
+elif [ "$current_format" = "{icon}" ]; then
+  jq '.pulseaudio.format = "{icon}  {volume}%"' "$CONFIG_FILE" >"${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
+fi
+
+cpu_format=$(jq -r '.cpu.format' "$CONFIG_FILE")
+
+if [ "$cpu_format" = "󰍛 {}%" ]; then
+  jq '.cpu.format = "󰍛"' "$CONFIG_FILE" >"${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
+elif [ "$cpu_format" = "󰍛" ]; then
+  jq '.cpu.format = "󰍛 {}%"' "$CONFIG_FILE" >"${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
+fi
+
+network_format=$(jq -r '.network."format-wifi"' "$CONFIG_FILE")
+
+if [ "$network_format" = "{icon}  {essid}" ]; then
+  jq '.network."format-wifi" = "{icon}"' "$CONFIG_FILE" >"${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
+elif [ "$network_format" = "{icon}" ]; then
+  jq '.network."format-wifi" = "{icon}  {essid}"' "$CONFIG_FILE" >"${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
+fi
+
+omarchy-restart-waybar
+
