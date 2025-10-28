@@ -1,5 +1,6 @@
 #!/bin/bash
 
+stow chromium
 stow git
 stow go --adopt
 # stow hypr --adopt
