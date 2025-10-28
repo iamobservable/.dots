@@ -1,6 +1,16 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "mcp": {},
+  "mcp": {
+    "beads": {
+      "command": ["uv", "run", "beads-mcp"],
+      "enabled": true,
+      "type": "local"
+    }
+  },
+  "permission": {
+    "git commit": "ask",
+    "git push": "ask"
+  },
   "provider": {
     "lmstudio": {
       "npm": "@ai-sdk/openai-compatible",
