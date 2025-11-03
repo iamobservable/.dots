@@ -1,13 +1,15 @@
 #!/bin/bash
 
+stow alacritty
 stow chromium
+stow ghostty
 stow git
-stow go --adopt
+stow go
 # stow hypr --adopt
 stow mise
 stow omarchy
-stow opencode
+#stow opencode
 stow starship
 stow user-dirs
 stow waybar
-stow wiremix
+stow xdg-terminals
